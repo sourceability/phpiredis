@@ -3,11 +3,9 @@ name: Build the extension
 on:
   push:
     branches: [ "v1.1" ]
+    tags: [ "v1.1.*" ]
   pull_request:
     branches: [ "v1.1" ]
-  push:
-    tags:
-      - "v1.1.*"
 
 permissions:
   contents: read
