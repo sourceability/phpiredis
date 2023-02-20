@@ -1,0 +1,51 @@
+name: Build the extension
+
+on:
+  push:
+    branches: [ "v1.1" ]
+  pull_request:
+    branches: [ "v1.1" ]
+
+permissions:
+  contents: read
+  packages: write
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Setup PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: 7.4
+          coverage: none
+          tools: composer:v2
+
+      - name: Install dependencies
+        run: apt update && apt install -y libhiredis-dev
+
+      - name: phpize
+        run: phpize
+
+      - name: ./configure
+        run: ./configure --enable-phpiredis
+
+      - name: make
+        run: make
+
+      - name: make install
+        run: make install
+
+      - name: Upload phpiredis.so
+        uses: actions/upload-artifact@v2
+        with:
+          name: phpiredis.so
+          path: /usr/local/lib/php/extensions/no-debug-non-zts-20210902/phpiredis.so
+
+      - name: Release
+        uses: softprops/action-gh-release@v1
+        if: startsWith(github.ref, 'refs/tags/')
+        with:
+          files: phpiredis.so
