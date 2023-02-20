@@ -45,7 +45,7 @@ jobs:
         uses: actions/upload-artifact@v2
         with:
           name: phpiredis.so
-          path: /usr/local/lib/php/extensions/no-debug-non-zts-20210902/phpiredis.so
+          path: modules/phpiredis.so
 
       - name: Release
         uses: softprops/action-gh-release@v1
