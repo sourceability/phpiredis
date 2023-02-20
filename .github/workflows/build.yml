@@ -38,7 +38,7 @@ jobs:
         run: make
 
       - name: make install
-        run: make install
+        run: sudo make install
 
       - name: Upload phpiredis.so
         uses: actions/upload-artifact@v2
