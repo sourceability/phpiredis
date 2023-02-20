@@ -7,10 +7,6 @@ on:
   pull_request:
     branches: [ "v1.1" ]
 
-permissions:
-  contents: write
-  packages: write
-
 jobs:
   build:
     runs-on: ubuntu-latest
