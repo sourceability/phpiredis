@@ -1,3 +1,9 @@
+# Sourceability instructions
+
+When a new upstream version is released, click the "Sync fork" button.  Pull
+down the repo, `git tag` the new version, update your Dockerfile, and `git push
+--tags`.
+
 # Phpiredis #
 
 [![Software license][ico-license]](LICENSE)
